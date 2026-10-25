@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#080A0F">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>NEXT DEV — We build digital experiences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root {
+  --bg:#080A0F;
+  --bg2:#10131B;
+  --mid:#101C35;
+  --acc:#243D68;
+  --tx:#fff;
+  --mut:#A7ADBA;
+  --bd:rgba(255,255,255,.09);
+  --glow:#7f9fd6;
+  --disp:'Sora','Helvetica Neue',Arial,sans-serif;
+  --body:'Manrope','Helvetica Neue',Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px)
+}
+html {
+  scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);
+  scroll-behavior:smooth;
+  background:var(--bg);
+  color-scheme:dark
+}
+*,*::before,*::after {
+  box-sizing:border-box
+}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--tx);
+  font:400 16px/1.65 var(--body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden
+}
+a {
+  color:inherit;
+  text-decoration:none
+}
+h1,h2,h3 {
+  font-family:var(--disp);
+  margin:0;
+  letter-spacing:-.03em;
+  line-height:1.08
+}
+p {
+  margin:0
+}
+:focus-visible {
+  outline:2px solid #5d85c9;
+  outline-offset:3px;
+  border-radius:6px
+}
+.wrap {
+  width:min(1160px,100% - 48px);
+  margin-inline:auto
+}
+body::before {
+  content:"";
+  position:fixed;
+  inset:0 0 auto;
+  height:env(safe-area-inset-top,0px);
+  background:rgba(8,10,15,.85);
+  backdrop-filter:blur(14px);
+  z-index:30
+}
+/* nav */
+nav {
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:20;
+  background:rgba(8,10,15,.78);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--bd)
+}
+nav .wrap {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  height:64px
+}
+.logo {
+  font:800 17px var(--disp);
+  letter-spacing:.02em;
+  margin-right:auto
+}
+.logo span {
+  color:var(--glow);
+  font-weight:500
+}
+.links {
+  position:relative;
+  display:flex;
+  gap:30px;
+  color:var(--mut);
+  font-size:14px;
+  font-weight:500
+}
+.links a {
+  padding:21px 0;
+  transition:color .25s
+}
+.links a:hover,.links a.on {
+  color:#fff
+}
+.ind {
+  position:absolute;
+  bottom:0;
+  left:0;
+  height:2px;
+  width:0;
+  background:linear-gradient(90deg,var(--acc),var(--glow));
+  border-radius:2px;
+  transition:transform .45s cubic-bezier(.2,.7,.2,1),width .45s
+}
+.burger {
+  display:none;
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  border:1px solid var(--bd);
+  background:transparent;
+  color:#fff;
+  cursor:pointer
+}
+.burger svg {
+  width:20px;
+  height:20px;
+  stroke:#fff;
+  fill:none;
+  stroke-width:1.6;
+  stroke-linecap:round
+}
+/* buttons */
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  height:52px;
+  padding:0 28px;
+  border-radius:999px;
+  font:600 15px var(--body);
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:background .3s,border-color .3s,box-shadow .3s,transform .15s
+}
+.btn svg {
+  width:18px;
+  height:18px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round
+}
+.btn:active {
+  transform:scale(.96)
+}
+.btn.p {
+  background:#fff;
+  color:#080A0F
+}
+.btn.p:hover {
+  background:#dbe5f7;
+  box-shadow:0 0 0 6px rgba(36,61,104,.5)
+}
+.btn.s {
+  background:transparent;
+  color:#fff;
+  border-color:rgba(255,255,255,.22)
+}
+.btn.s:hover {
+  background:var(--mid);
+  border-color:var(--acc)
+}
+.btn.sm {
+  height:40px;
+  padding:0 20px;
+  font-size:14px
+}
+.btn[disabled] {
+  opacity:.45;
+  cursor:not-allowed
+}
+.btn[disabled]:active {
+  transform:none
+}
+/* hero */
+.hero {
+  position:relative;
+  overflow:hidden;
+  padding:72px 0 88px;
+  min-height:calc(100svh - 65px);
+  display:flex;
+  align-items:center;
+  background:radial-gradient(ellipse 70% 60% at 75% 20%,rgba(36,61,104,.5),transparent 65%),radial-gradient(ellipse 60% 50% at 5% 100%,rgba(16,28,53,.9),transparent 70%),var(--bg)
+}
+.hero canvas {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none
+}
+.hgrid {
+  position:absolute;
+  inset:auto -20% -2%;
+  height:50%;
+  transform:perspective(520px) rotateX(62deg);
+  transform-origin:50% 100%;
+  background-image:linear-gradient(rgba(120,160,230,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(120,160,230,.16) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:linear-gradient(to top,#000 5%,transparent 85%);
+  mask-image:linear-gradient(to top,#000 5%,transparent 85%);
+  animation:drift 14s linear infinite
+}
+@keyframes drift {
+  to {
+    background-position:0 64px
+  }
+}
+.hero .wrap {
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;
+  gap:32px
+}
+h1 {
+  font-size:clamp(38px,6.6vw,88px);
+  font-weight:800;
+  letter-spacing:-.045em;
+  line-height:1
+}
+.w {
+  display:inline-block;
+  overflow:hidden;
+  vertical-align:top;
+  padding-bottom:.08em
+}
+.js .w>span {
+  display:inline-block;
+  transform:translateY(110%);
+  animation:up .9s calc(var(--i)*.12s + .1s) cubic-bezier(.2,.7,.2,1) forwards
+}
+@keyframes up {
+  to {
+    transform:none
+  }
+}
+.rot {
+  margin-top:22px;
+  font:700 clamp(22px,3.2vw,34px)/1.2 var(--disp);
+  letter-spacing:-.02em;
+  color:#cfdcf5;
+  min-height:1.3em
+}
+.rot span {
+  display:inline-block;
+  transition:opacity .35s,transform .35s;
+  background:linear-gradient(90deg,#fff,var(--glow));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent
+}
+.rot span.out {
+  opacity:0;
+  transform:translateY(8px)
+}
+.lead {
+  max-width:520px;
+  margin-top:20px;
+  color:var(--mut);
+  font-size:clamp(16px,1.8vw,19px)
+}
+.cta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:36px
+}
+.js .fade {
+  opacity:0;
+  animation:fade 1s .7s ease forwards
+}
+@keyframes fade {
+  to {
+    opacity:1
+  }
+}
+/* hero visual */
+.visual {
+  position:relative;
+  width:min(100%,470px);
+  aspect-ratio:1;
+  margin-inline:auto;
+  transform:translateY(var(--py,0px))
+}
+.visual svg.orb {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:visible
+}
+.spin {
+  transform-origin:200px 200px;
+  animation:spin 44s linear infinite
+}
+.ring {
+  transform-origin:200px 200px;
+  animation:spin 30s linear infinite reverse
+}
+.ring.b {
+  animation-duration:46s;
+  animation-direction:normal
+}
+@keyframes spin {
+  to {
+    transform:rotate(360deg)
+  }
+}
+.orb text {
+  font:600 12.5px var(--disp);
+  fill:rgba(200,215,245,.75)
+}
+.ico {
+  position:absolute;
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(16,28,53,.7);
+  border:1px solid rgba(127,159,214,.28);
+  backdrop-filter:blur(8px);
+  box-shadow:0 10px 30px -10px rgba(36,61,104,.9);
+  animation:float 6s ease-in-out infinite
+}
+.ico svg {
+  width:22px;
+  height:22px;
+  fill:none;
+  stroke:#dbe7ff;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round
+}
+.ico:nth-of-type(1) {
+  left:2%;
+  top:26%
+}
+.ico:nth-of-type(2) {
+  right:2%;
+  top:14%;
+  animation-delay:-2s
+}
+.ico:nth-of-type(3) {
+  right:0;
+  bottom:22%;
+  animation-delay:-4s
+}
+.ico:nth-of-type(4) {
+  left:8%;
+  bottom:12%;
+  animation-delay:-1s
+}
+@keyframes float {
+  50% {
+    transform:translateY(-10px)
+  }
+}
+/* ticker */
+.ticker {
+  border-block:1px solid var(--bd);
+  background:var(--bg2);
+  overflow:hidden;
+  padding:18px 0
+}
+.track {
+  display:flex;
+  width:max-content;
+  animation:tick 38s linear infinite
+}
+.track span {
+  display:flex;
+  align-items:center;
+  font:700 clamp(18px,3vw,28px) var(--disp);
+  letter-spacing:-.02em;
+  color:#e8eefb;
+  white-space:nowrap
+}
+.track span::after {
+  content:"";
+  width:7px;
+  height:7px;
+  margin:0 32px;
+  border-radius:50%;
+  background:var(--glow);
+  box-shadow:0 0 12px var(--glow)
+}
+@keyframes tick {
+  to {
+    transform:translateX(-50%)
+  }
+}
+/* sections */
+section {
+  padding:120px 0
+}
+.head {
+  max-width:680px;
+  margin-bottom:56px
+}
+.head h2 {
+  font-size:clamp(34px,5.2vw,60px);
+  font-weight:700
+}
+.head p {
+  margin-top:18px;
+  color:var(--mut);
+  font-size:18px
+}
+.js .rv {
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)
+}
+.js .rv.in {
+  opacity:1;
+  transform:none
+}
+.cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px
+}
+.card {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  padding:30px 28px;
+  background:var(--bg2);
+  border:1px solid var(--bd);
+  border-radius:18px;
+  overflow:hidden;
+  transition:border-color .4s,box-shadow .4s,transform .4s
+}
+.card::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity .4s;
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,0%),rgba(60,100,180,.22),transparent 70%);
+  pointer-events:none
+}
+.card:hover,.card:focus-within {
+  border-color:var(--acc);
+  box-shadow:0 20px 60px -24px rgba(45,85,160,.55);
+  transform:translateY(-4px)
+}
+.card:hover::before {
+  opacity:1
+}
+.ci {
+  position:relative;
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:var(--mid);
+  border:1px solid var(--bd);
+  margin-bottom:40px
+}
+.ci svg {
+  width:22px;
+  height:22px;
+  stroke:#cfdcf5;
+  fill:none;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round
+}
+.card h3 {
+  position:relative;
+  font-size:19px;
+  font-weight:700;
+  margin-bottom:10px
+}
+.card p {
+  position:relative;
+  color:var(--mut);
+  font-size:15px;
+  flex:1
+}
+.card a {
+  position:relative;
+  margin-top:26px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  font-weight:600;
+  color:#cfdcf5;
+  padding:8px 0;
+  transition:color .25s,gap .25s
+}
+.card a:hover {
+  color:#fff;
+  gap:12px
+}
+/* portfolio */
+.work {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px
+}
+.frame {
+  background:#0c0f16;
+  border:1px solid var(--bd);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 30px 70px -30px #000;
+  transition:border-color .4s,box-shadow .4s
+}
+.proj:hover .frame {
+  border-color:var(--acc);
+  box-shadow:0 30px 70px -30px #000,0 0 50px -12px rgba(45,85,160,.55)
+}
+.bar {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  height:32px;
+  padding:0 12px;
+  background:#13171f;
+  border-bottom:1px solid var(--bd)
+}
+.bar i {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,.14)
+}
+.bar b {
+  margin-left:10px;
+  max-width:70%;
+  height:16px;
+  border-radius:5px;
+  background:rgba(255,255,255,.06);
+  font:500 10px/16px var(--body);
+  color:var(--mut);
+  padding:0 8px;
+  overflow:hidden;
+  white-space:nowrap
+}
+.scr {
+  aspect-ratio:16/11;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  background:radial-gradient(ellipse at 80% 0,rgba(36,61,104,.5),transparent 60%),#0b0e15
+}
+.mn {
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+.mn u {
+  width:34px;
+  height:6px;
+  border-radius:3px;
+  background:#fff
+}
+.mn span {
+  display:flex;
+  gap:8px
+}
+.mn span i {
+  width:18px;
+  height:4px;
+  border-radius:2px;
+  background:rgba(255,255,255,.2)
+}
+.t {
+  height:11px;
+  border-radius:4px;
+  background:#fff
+}
+.t.g {
+  height:5px;
+  background:rgba(255,255,255,.22)
+}
+.row {
+  display:flex;
+  gap:8px
+}
+.pill {
+  height:16px;
+  width:58px;
+  border-radius:8px;
+  background:#fff
+}
+.pill.pu {
+  animation:pulse 2.4s ease-in-out infinite
+}
+@keyframes pulse {
+  50% {
+    box-shadow:0 0 0 6px rgba(127,159,214,.25)
+  }
+}
+.tile {
+  flex:1;
+  border-radius:7px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--bd);
+  min-height:46px;
+  padding:8px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  gap:5px
+}
+.tile.b {
+  background:linear-gradient(160deg,var(--acc),var(--mid));
+  border-color:rgba(120,160,230,.25)
+}
+.tile s {
+  display:block;
+  height:4px;
+  width:60%;
+  border-radius:2px;
+  background:rgba(255,255,255,.35)
+}
+.tile s+s {
+  width:35%;
+  background:rgba(255,255,255,.15)
+}
+.prod {
+  flex:1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px
+}
+.prod div {
+  position:relative;
+  overflow:hidden;
+  border-radius:7px;
+  border:1px solid var(--bd);
+  background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02))
+}
+.prod div:first-child {
+  background:linear-gradient(160deg,var(--acc),var(--mid))
+}
+.prod div::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.14) 50%,transparent 70%);
+  transform:translateX(-120%);
+  animation:sh 4.5s ease-in-out infinite
+}
+.prod div:nth-child(2)::after {
+  animation-delay:.6s
+}
+.prod div:nth-child(3)::after {
+  animation-delay:1.2s
+}
+.prod div:nth-child(4)::after {
+  animation-delay:1.8s
+}
+@keyframes sh {
+  40%,100% {
+    transform:translateX(120%)
+  }
+}
+.chart {
+  flex:1;
+  display:flex;
+  align-items:flex-end;
+  gap:6px;
+  padding:8px;
+  border-radius:7px;
+  border:1px solid var(--bd);
+  background:rgba(255,255,255,.03)
+}
+.chart i {
+  flex:1;
+  border-radius:3px 3px 0 0;
+  background:rgba(255,255,255,.14);
+  transform-origin:bottom;
+  animation:bar 3s ease-in-out infinite alternate
+}
+.chart i.h {
+  background:linear-gradient(#7f9fd6,var(--acc))
+}
+.chart i:nth-child(even) {
+  animation-delay:-1.2s
+}
+@keyframes bar {
+  from {
+    transform:scaleY(.6)
+  }
+}
+.cap {
+  padding:20px 4px 0
+}
+.cap h3 {
+  font-size:19px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap
+}
+.badge {
+  font:600 11px var(--body);
+  letter-spacing:.02em;
+  padding:3px 10px;
+  border-radius:999px;
+  border:1px solid rgba(127,159,214,.35);
+  color:#cfdcf5;
+  background:var(--mid)
+}
+.cap p {
+  margin:8px 0 16px;
+  color:var(--mut);
+  font-size:15px
+}
+/* contact */
+.contact {
+  border-top:1px solid var(--bd);
+  background:radial-gradient(ellipse 70% 60% at 50% 110%,rgba(36,61,104,.55),transparent 70%),var(--bg)
+}
+.contact .top {
+  text-align:center
+}
+.contact h2 {
+  font-size:clamp(38px,7vw,88px);
+  font-weight:800;
+  letter-spacing:-.045em;
+  max-width:860px;
+  margin:0 auto
+}
+.contact .top>p {
+  max-width:500px;
+  margin:24px auto 0;
+  color:var(--mut);
+  font-size:18px
+}
+.contact .cta {
+  justify-content:center
+}
+.note {
+  max-width:560px;
+  margin:22px auto 0;
+  padding:12px 16px;
+  border:1px dashed rgba(127,159,214,.4);
+  border-radius:12px;
+  color:#cfdcf5;
+  font-size:14px;
+  text-align:left
+}
+.form {
+  max-width:640px;
+  margin:56px auto 0;
+  padding:32px;
+  background:var(--bg2);
+  border:1px solid var(--bd);
+  border-radius:20px;
+  box-shadow:0 30px 70px -40px #000
+}
+.form h3 {
+  font-size:22px
+}
+.form>p {
+  margin:8px 0 24px;
+  color:var(--mut);
+  font-size:15px
+}
+label {
+  display:block;
+  margin-bottom:16px;
+  font-size:14px;
+  font-weight:600;
+  color:#dbe3f2
+}
+input,select,textarea {
+  display:block;
+  width:100%;
+  margin-top:8px;
+  padding:14px 16px;
+  background:#0b0e15;
+  color:#fff;
+  border:1px solid var(--bd);
+  border-radius:12px;
+  font:400 16px var(--body);
+  transition:border-color .25s,box-shadow .25s
+}
+textarea {
+  min-height:130px;
+  resize:vertical
+}
+input:focus,select:focus,textarea:focus {
+  outline:none;
+  border-color:var(--acc);
+  box-shadow:0 0 0 4px rgba(36,61,104,.5)
+}
+.form .cta {
+  margin-top:8px;
+  justify-content:flex-start
+}
+.status {
+  margin-top:16px;
+  font-size:14px;
+  color:#cfdcf5;
+  min-height:1.4em
+}
+.fine {
+  margin-top:12px;
+  font-size:13px;
+  color:var(--mut)
+}
+footer {
+  border-top:1px solid var(--bd);
+  padding:28px 0;
+  color:var(--mut);
+  font-size:14px
+}
+footer .wrap {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px
+}
+@media (max-width:1020px) {
+  .cards {
+    grid-template-columns:repeat(2,1fr)
+  }
+  .work {
+    grid-template-columns:1fr 1fr
+  }
+}
+@media (max-width:860px) {
+  .hero .wrap {
+    grid-template-columns:1fr;
+    gap:40px
+  }
+  .visual {
+    width:min(100%,380px)
+  }
+}
+@media (max-width:720px) {
+  .wrap {
+    width:calc(100% - 40px)
+  }
+  section {
+    padding:84px 0
+  }
+  .hero {
+    padding:44px 0 72px;
+    min-height:0
+  }
+  .burger {
+    display:block
+  }
+  .nav-cta {
+    display:none
+  }
+  .ind {
+    display:none
+  }
+  .links {
+    display:none;
+    position:absolute;
+    top:64px;
+    left:0;
+    right:0;
+    flex-direction:column;
+    gap:0;
+    padding:8px 20px 14px;
+    background:#0a0d14;
+    border-bottom:1px solid var(--bd)
+  }
+  .links.open {
+    display:flex
+  }
+  .links a {
+    padding:14px 0
+  }
+  .cards,.work {
+    grid-template-columns:1fr
+  }
+  .cta .btn {
+    flex:1 1 100%
+  }
+  .ico {
+    width:38px;
+    height:38px;
+    border-radius:11px
+  }
+  .ico svg {
+    width:18px;
+    height:18px
+  }
+  .orb text {
+    font-size:13.5px
+  }
+  .form {
+    padding:22px 18px;
+    margin-top:40px
+  }
+  .head {
+    margin-bottom:40px
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important
+  }
+  html {
+    scroll-behavior:auto
+  }
+  .js .w>span {
+    transform:none
+  }
+  .js .fade,.js .rv {
+    opacity:1;
+    transform:none
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+ <div class="wrap">
+  <a href="#top" class="logo">NEXT<span> DEV</span></a>
+  <div class="links" id="links">
+   <a href="#top" class="on">Home</a><a href="#services">Services</a><a href="#work">Work</a><a href="#contact">Contact</a><i class="ind" id="ind"></i>
+  </div>
+  <a href="#contact" class="btn p sm nav-cta">Start a Project</a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
+ </div>
+</nav>
+
+<header class="hero" id="top">
+ <canvas id="fx" aria-hidden="true"></canvas><div class="hgrid"></div>
+ <div class="wrap">
+  <div>
+   <h1 id="h1">We Build Digital Experiences.</h1>
+   <p class="rot fade" aria-live="off"><span id="rot">Websites</span></p>
+   <p class="lead fade">Websites, Telegram bots, online stores and custom web apps, designed and built for businesses that want to look as serious as they are.</p>
+   <div class="cta fade">
+    <a href="#contact" class="btn p">Start a Project</a>
+    <a href="#services" class="btn s">Explore Services</a>
+   </div>
+  </div>
+
+  <div class="visual" id="visual" aria-hidden="true">
+   <svg class="orb" id="orb" viewBox="0 0 400 400">
+    <defs>
+     <radialGradient id="sg" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#2d4c80"/><stop offset=".45" stop-color="#101C35"/><stop offset="1" stop-color="#05070b"/></radialGradient>
+     <radialGradient id="halo"><stop offset="0" stop-color="#243D68" stop-opacity=".6"/><stop offset="1" stop-color="#243D68" stop-opacity="0"/></radialGradient>
+     <path id="cp" d="M200,200 m-168,0 a168,168 0 1,1 336,0 a168,168 0 1,1 -336,0"/>
+    </defs>
+    <circle cx="200" cy="200" r="195" fill="url(#halo)"/>
+    <g class="spin"><text><textPath href="#cp" textLength="1048" lengthAdjust="spacing">WEBSITES • TELEGRAM BOTS • E-COMMERCE • WEB APPS • CUSTOM SOLUTIONS • </textPath></text></g>
+    <circle cx="200" cy="200" r="146" fill="none" stroke="rgba(127,159,214,.14)"/>
+    <g class="ring"><g transform="rotate(-24 200 200)"><ellipse cx="200" cy="200" rx="128" ry="44" fill="none" stroke="#5d85c9" stroke-opacity=".7" stroke-width="1"/>
+     <circle r="3.5" fill="#cfe0ff"><animateMotion dur="8s" repeatCount="indefinite" path="M72,200 a128,44 0 1,0 256,0 a128,44 0 1,0 -256,0"/></circle></g></g>
+    <g class="ring b"><g transform="rotate(32 200 200)"><ellipse cx="200" cy="200" rx="120" ry="38" fill="none" stroke="#7f9fd6" stroke-opacity=".4" stroke-width="1" stroke-dasharray="3 7"/></g></g>
+    <circle cx="200" cy="200" r="80" fill="url(#sg)" stroke="rgba(150,185,255,.3)"/>
+    <path d="M150 178a58 58 0 0 1 60-36" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="176" cy="160" rx="22" ry="12" fill="rgba(255,255,255,.08)" transform="rotate(-30 176 160)"/>
+   </svg>
+   <div class="ico"><svg viewBox="0 0 24 24"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></div>
+   <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 4 3 11l6 2 2 6 3-4 5 3z"/></svg></div>
+   <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 4h3l2 11h10l2-8H7"/><circle cx="9" cy="19" r="1"/><circle cx="17" cy="19" r="1"/></svg></div>
+   <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></div>
+  </div>
+ </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<section id="services">
+ <div class="wrap">
+  <div class="head rv"><h2>Everything you need to launch and sell online.</h2><p>One developer handles design, code and launch, so nothing gets lost between handoffs.</p></div>
+  <div class="cards">
+   <article class="card rv"><div class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div><h3>Website Development</h3><p>Business websites, landing pages, portfolios, and responsive web design.</p><a href="#contact" data-type="Website">Discuss a website</a></article>
+   <article class="card rv"><div class="ci"><svg viewBox="0 0 24 24"><path d="M21 4 3 11l6 2 2 6 3-4 5 3z"/></svg></div><h3>Telegram Bots</h3><p>Telegram shop bots, automated workflows, order handling, and admin functionality.</p><a href="#contact" data-type="Telegram Bot">Discuss a bot</a></article>
+   <article class="card rv"><div class="ci"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div><h3>Telegram Mini Apps</h3><p>Interactive Telegram shopping experiences, product catalogs, and web interfaces inside Telegram.</p><a href="#contact" data-type="Mini App">Discuss a mini app</a></article>
+   <article class="card rv"><div class="ci"><svg viewBox="0 0 24 24"><path d="M3 4h3l2 11h10l2-8H7"/><circle cx="9" cy="19" r="1"/><circle cx="17" cy="19" r="1"/></svg></div><h3>E-commerce</h3><p>Online stores, product catalogs, shopping carts, and checkout interfaces.</p><a href="#contact" data-type="Online Store">Discuss a store</a></article>
+   <article class="card rv"><div class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/></svg></div><h3>Payment Integration</h3><p>Payment-provider integration and secure payment workflows, subject to suitable backend infrastructure.</p><a href="#contact" data-type="Payment Integration">Discuss payments</a></article>
+   <article class="card rv"><div class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/><rect x="3" y="14" width="8" height="7" rx="1.5"/></svg></div><h3>Custom Web Applications</h3><p>Admin dashboards, booking systems, management tools, and custom business software.</p><a href="#contact" data-type="Other">Discuss a custom app</a></article>
+  </div>
+ </div>
+</section>
+
+<section id="work" style="background:linear-gradient(180deg,var(--bg),#0a0d14 50%,var(--bg))">
+ <div class="wrap">
+  <div class="head rv"><h2>Selected demos.</h2><p>Three demonstration projects that show how I approach layout, hierarchy and detail. They are demos, not client work.</p></div>
+  <div class="work">
+   <article class="proj rv"><div class="frame"><div class="bar"><i></i><i></i><i></i><b>noir-restaurant</b></div>
+    <div class="scr"><div class="mn"><u></u><span><i></i><i></i><i></i></span></div>
+     <div style="display:flex;flex-direction:column;gap:7px;margin-top:6px"><div class="t" style="width:64%"></div><div class="t" style="width:42%"></div><div class="t g" style="width:55%"></div></div>
+     <div class="row"><div class="pill pu"></div></div><div class="row" style="flex:1"><div class="tile b"><s></s><s></s></div><div class="tile"><s></s><s></s></div><div class="tile"><s></s><s></s></div></div></div></div>
+    <div class="cap"><h3>NOIR RESTAURANT <span class="badge">Demo</span></h3><p>Restaurant website with a menu and table reservation flow.</p><div class="demo" data-demo="noir"></div></div></article>
+   <article class="proj rv"><div class="frame"><div class="bar"><i></i><i></i><i></i><b>vanta-store</b></div>
+    <div class="scr"><div class="mn"><u></u><span><i></i><i></i></span></div><div class="prod"><div></div><div></div><div></div><div></div></div></div></div>
+    <div class="cap"><h3>VANTA STORE <span class="badge">Demo</span></h3><p>Fashion storefront with a product catalog and cart.</p><div class="demo" data-demo="vanta"></div></div></article>
+   <article class="proj rv"><div class="frame"><div class="bar"><i></i><i></i><i></i><b>next-commerce</b></div>
+    <div class="scr"><div class="row"><div class="tile b"><s></s><s></s></div><div class="tile"><s></s><s></s></div></div>
+     <div class="chart"><i style="height:35%"></i><i style="height:50%"></i><i class="h" style="height:72%"></i><i style="height:48%"></i><i class="h" style="height:90%"></i><i style="height:62%"></i><i style="height:78%"></i></div></div></div>
+    <div class="cap"><h3>NEXT COMMERCE <span class="badge">Demo</span></h3><p>Store management dashboard for orders and sales.</p><div class="demo" data-demo="commerce"></div></div></article>
+  </div>
+ </div>
+</section>
+
+<section id="contact" class="contact">
+ <div class="wrap">
+  <div class="top rv">
+   <h2>Let’s Build Something Great.</h2>
+   <p>Message me on Telegram for the fastest reply, or send the project form below.</p>
+   <div class="cta">
+    <a data-tg href="#contact" class="btn p"><svg viewBox="0 0 24 24"><path d="M21 4 3 11l6 2 2 6 3-4 5 3z"/></svg>Message on Telegram</a>
+    <a id="mailbtn" hidden class="btn s">Send an email</a>
+   </div>
+   <p class="note" id="tgnote" hidden>Setup needed: the Telegram username is not configured yet, so the Telegram buttons have nowhere to go. Set <b>telegramUsername</b> in the CONFIG block at the top of the script.</p>
+  </div>
+
+  <form class="form rv" id="form">
+   <h3>Tell me about your project</h3>
+   <p>This site has no server, so the form does not store anything. It prepares your message and opens Telegram (or email) with the text filled in. You still press send there.</p>
+   <label>Your name (optional)<input id="pname" autocomplete="name" placeholder="Your name"></label>
+   <label>Project type<select id="ptype"><option>Website</option><option>Telegram Bot</option><option>Mini App</option><option>Online Store</option><option>Payment Integration</option><option>Other</option></select></label>
+   <label>Describe your idea<textarea id="pmsg" required placeholder="What do you want to build, and when do you need it?"></textarea></label>
+   <div class="cta"><button class="btn p" type="submit">Prepare my message</button><button class="btn s" type="button" id="copy">Copy message</button></div>
+   <p class="status" id="status" role="status"></p>
+  </form>
+ </div>
+</section>
+
+<footer><div class="wrap"><span>© 2026 NEXT DEV</span><span>Websites, bots and web apps, built with care.</span></div></footer>
+
+<script>
+/* ============ CONFIG — edit these values only ============
+   telegramUsername: your username without @ (5-32 letters, numbers, underscore)
+   email:            your email address, or leave "" to hide the email button
+   demos:            full https:// link to each live demo, or "" if not ready */
+const CONFIG = {
+  telegramUsername: "vanta_dev99",
+  email: "vantanextdev@gmail.com",
+  demos: { noir: "https://vovat24xx.github.io/Restaurant_Demo/", vanta: "", commerce: "" }
+};
+/* ========================================================= */
+
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const small=matchMedia('(max-width:720px)').matches;
+
+/* Contact config */
+const u=String(CONFIG.telegramUsername||'').replace(/^@/,'');
+const user=/^[A-Za-z0-9_]{5,32}$/.test(u)&&u!=='YOUR_USERNAME'?u:'';
+const tg=user?'https://t.me/'+user:'';
+$$('[data-tg]').forEach(a=>{if(tg){a.href=tg;a.target='_blank';a.rel='noopener'}});
+if(!tg)$('#tgnote').hidden=false;
+const email=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(CONFIG.email||'')?CONFIG.email:'';
+if(email){const m=$('#mailbtn');m.href='mailto:'+email;m.hidden=false}
+
+/* Demo buttons: only valid https links are clickable */
+$$('.demo').forEach(d=>{
+  const url=CONFIG.demos[d.dataset.demo]||'';let ok=false;
+  try{ok=new URL(url).protocol==='https:'}catch(e){}
+  if(ok){d.innerHTML='<a class="btn s sm" target="_blank" rel="noopener">View live demo</a>';$('a',d).href=url}
+  else d.innerHTML='<button class="btn s sm" disabled title="Demo link not configured yet">Demo link not set</button>';
+});
+
+/* Headline: word-by-word reveal */
+const h=$('#h1'),txt=h.textContent.trim();h.setAttribute('aria-label',txt);
+h.innerHTML=txt.split(' ').map((w,i)=>`<span class="w" aria-hidden="true" style="--i:${i}"><span>${w}</span></span>`).join(' ');
+
+/* Rotating text */
+const words=['Websites','Telegram Bots','E-commerce Stores','Web Applications','Custom Digital Solutions'],r=$('#rot');let k=0;
+if(!reduce)setInterval(()=>{r.classList.add('out');setTimeout(()=>{k=(k+1)%words.length;r.textContent=words[k];r.classList.remove('out')},350)},2600);
+
+/* Ticker */
+const items=['Websites','Telegram Bots','E-commerce','Mini Apps','Payments','Web Apps'];
+const row=items.map(t=>`<span>${t}</span>`).join('');$('#track').innerHTML=row+row+row+row;
+
+/* Scroll reveal (staggered inside grids) */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*90+'ms';io.observe(el)});
+
+/* Nav: smooth active indicator */
+const links=$$('#links a'),ind=$('#ind');
+function mark(a){links.forEach(l=>l.classList.toggle('on',l===a));ind.style.width=a.offsetWidth+'px';ind.style.transform=`translateX(${a.offsetLeft}px)`}
+const secs=['top','services','work','contact'].map(id=>document.getElementById(id));
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)mark(links[secs.indexOf(e.target)])}),{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(s=>so.observe(s));mark(links[0]);addEventListener('resize',()=>mark($('#links a.on')));
+document.fonts&&document.fonts.ready.then(()=>mark($('#links a.on')));
+const burger=$('#burger'),menu=$('#links');
+burger.onclick=()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)};
+links.forEach(l=>l.addEventListener('click',()=>{menu.classList.remove('open');burger.setAttribute('aria-expanded',false)}));
+
+/* Service card glow follows pointer; buttons preselect project type */
+$$('.card').forEach(c=>c.addEventListener('pointermove',e=>{const b=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-b.left+'px');c.style.setProperty('--my',e.clientY-b.top+'px')}));
+$$('[data-type]').forEach(a=>a.addEventListener('click',()=>{$('#ptype').value=a.dataset.type}));
+
+/* Hero: pause SVG motion if requested, parallax, particles */
+if(reduce)$('#orb').pauseAnimations();
+const vis=$('#visual');
+if(!reduce)addEventListener('scroll',()=>{if(scrollY<900)vis.style.setProperty('--py',(scrollY*.08)+'px')},{passive:true});
+const cv=$('#fx');
+if(!reduce){
+  const ctx=cv.getContext('2d'),n=small?14:36;let W,H,ps=[],run=true;
+  const fit=()=>{W=cv.width=cv.clientWidth;H=cv.height=cv.clientHeight};fit();addEventListener('resize',fit);
+  ps=Array.from({length:n},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.4+.4,v:Math.random()*.00006+.00002,a:Math.random()*.5+.2}));
+  new IntersectionObserver(e=>{run=e[0].isIntersecting;if(run)loop()}).observe(cv);
+  function loop(){if(!run)return;ctx.clearRect(0,0,W,H);
+    ps.forEach(p=>{p.y-=p.v*16;if(p.y<0){p.y=1;p.x=Math.random()}
+      ctx.beginPath();ctx.arc(p.x*W,p.y*H,p.r,0,6.283);ctx.fillStyle=`rgba(140,175,235,${p.a})`;ctx.shadowColor='#7f9fd6';ctx.shadowBlur=8;ctx.fill()});
+    requestAnimationFrame(loop)}
+  loop();
+}
+
+/* Inquiry form: no backend — builds a message and hands it to Telegram or email */
+const st=$('#status');
+const build=()=>{const n=$('#pname').value.trim();return`New project inquiry: ${$('#ptype').value}\n${n?'From: '+n+'\n':''}\n${$('#pmsg').value.trim()}`};
+$('#form').addEventListener('submit',e=>{e.preventDefault();const t=build();
+  if(tg){window.open(tg+'?text='+encodeURIComponent(t),'_blank','noopener');st.textContent='Telegram opened with your message filled in. Press send there to deliver it.'}
+  else if(email){location.href='mailto:'+email+'?subject='+encodeURIComponent('Project inquiry: '+$('#ptype').value)+'&body='+encodeURIComponent(t);st.textContent='Your email app should open with the message ready to send.'}
+  else st.textContent='No contact method is configured yet, so nothing was sent. Use “Copy message” and send it to the site owner directly.'});
+$('#copy').onclick=async()=>{if(!$('#pmsg').value.trim()){st.textContent='Write your idea first, then copy.';return}
+  try{await navigator.clipboard.writeText(build());st.textContent='Message copied.'}catch(e){st.textContent='Copy failed. Select the text and copy it manually.'}};
+})();
+</script>
+</body>
+</html>
