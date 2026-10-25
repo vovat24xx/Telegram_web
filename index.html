@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en" style="background:#080A0F">
 <head>
 <meta charset="utf-8">
@@ -683,6 +683,53 @@ section {
 .prod div:nth-child(4)::after {
   animation-delay:1.8s
 }
+/* Barbershop portfolio preview */
+.barber-preview {
+  flex:1;
+  min-height:0;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:12px;
+  color:#f4eee4;
+  background:radial-gradient(ellipse at 80% 0,rgba(169,111,61,.22),transparent 55%),linear-gradient(145deg,#17130f,#0c0d10 68%)
+}
+.barber-preview .brand {
+  color:#c89c68;
+  font:600 9px/1.2 var(--body);
+  letter-spacing:.2em
+}
+.barber-preview h4 {
+  max-width:230px;
+  font:700 clamp(17px,2vw,27px)/1.05 var(--body);
+  letter-spacing:.035em
+}
+.barber-preview p {
+  max-width:230px;
+  color:rgba(244,238,228,.62);
+  font:400 9px/1.5 var(--body)
+}
+.barber-preview .booking {
+  align-self:flex-start;
+  padding:7px 10px;
+  border:1px solid rgba(200,156,104,.7);
+  color:#e7cba9;
+  font:600 8px var(--body);
+  letter-spacing:.1em
+}
+.barber-preview .services {
+  display:flex;
+  gap:6px
+}
+.barber-preview .services span {
+  flex:1;
+  padding:7px 5px;
+  border-top:1px solid rgba(200,156,104,.35);
+  color:rgba(244,238,228,.75);
+  font:500 7px var(--body);
+  text-align:center
+}
 @keyframes sh {
   40%,100% {
     transform:translateX(120%)
@@ -1022,9 +1069,9 @@ footer .wrap {
      <div style="display:flex;flex-direction:column;gap:7px;margin-top:6px"><div class="t" style="width:64%"></div><div class="t" style="width:42%"></div><div class="t g" style="width:55%"></div></div>
      <div class="row"><div class="pill pu"></div></div><div class="row" style="flex:1"><div class="tile b"><s></s><s></s></div><div class="tile"><s></s><s></s></div><div class="tile"><s></s><s></s></div></div></div></div>
     <div class="cap"><h3>NOIR RESTAURANT <span class="badge">Demo</span></h3><p>Restaurant website with a menu and table reservation flow.</p><div class="demo" data-demo="noir"></div></div></article>
-   <article class="proj rv"><div class="frame"><div class="bar"><i></i><i></i><i></i><b>vanta-store</b></div>
-    <div class="scr"><div class="mn"><u></u><span><i></i><i></i></span></div><div class="prod"><div></div><div></div><div></div><div></div></div></div></div>
-    <div class="cap"><h3>VANTA STORE <span class="badge">Demo</span></h3><p>Fashion storefront with a product catalog and cart.</p><div class="demo" data-demo="vanta"></div></div></article>
+   <article class="proj rv"><div class="frame"><div class="bar"><i></i><i></i><i></i><b>noir-barber-club</b></div>
+    <div class="scr"><div class="barber-preview"><div><div class="brand">NOIR BARBER CLUB</div><h4>THE ART OF A GOOD CUT.</h4><p>Precision grooming. Timeless style. Made for you.</p><span class="booking">BOOK YOUR CHAIR</span></div><div class="services"><span>HAIRCUTS</span><span>BEARD CARE</span><span>CLASSIC SHAVES</span></div></div></div></div>
+    <div class="cap"><h3>NOIR BARBER CLUB <span class="badge">Barbershop</span></h3><p>Premium barbershop website featuring services, pricing, a photo gallery, opening hours, and contact information.</p><div class="demo" data-demo="barber"></div></div></article>
    <article class="proj rv"><div class="frame"><div class="bar"><i></i><i></i><i></i><b>next-commerce</b></div>
     <div class="scr"><div class="row"><div class="tile b"><s></s><s></s></div><div class="tile"><s></s><s></s></div></div>
      <div class="chart"><i style="height:35%"></i><i style="height:50%"></i><i class="h" style="height:72%"></i><i style="height:48%"></i><i class="h" style="height:90%"></i><i style="height:62%"></i><i style="height:78%"></i></div></div></div>
@@ -1067,7 +1114,7 @@ footer .wrap {
 const CONFIG = {
   telegramUsername: "vanta_dev99",
   email: "vantanextdev@gmail.com",
-  demos: { noir: "https://vovat24xx.github.io/Restaurant_Demo/", vanta: "", commerce: "" }
+  demos: { noir: "https://vovat24xx.github.io/Restaurant_Demo/", barber: "https://vovat24xx.github.io/Salon_-Friseursalon/", commerce: "" }
 };
 /* ========================================================= */
 
@@ -1089,7 +1136,7 @@ if(email){const m=$('#mailbtn');m.href='mailto:'+email;m.hidden=false}
 $$('.demo').forEach(d=>{
   const url=CONFIG.demos[d.dataset.demo]||'';let ok=false;
   try{ok=new URL(url).protocol==='https:'}catch(e){}
-  if(ok){d.innerHTML='<a class="btn s sm" target="_blank" rel="noopener">View live demo</a>';$('a',d).href=url}
+  if(ok){const label=d.dataset.demo==='barber'?'Live Demo':'View live demo';d.innerHTML='<a class="btn s sm" target="_blank" rel="noopener">'+label+'</a>';$('a',d).href=url}
   else d.innerHTML='<button class="btn s sm" disabled title="Demo link not configured yet">Demo link not set</button>';
 });
 
