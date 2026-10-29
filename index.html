@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" style="background:#080A0F">
 <head>
 <meta charset="utf-8">
@@ -96,6 +96,16 @@ nav .wrap {
 .logo span {
   color:var(--glow);
   font-weight:500
+}
+.language-switch {
+  height:34px;
+  padding:0 9px;
+  border:1px solid var(--bd);
+  border-radius:999px;
+  background:transparent;
+  color:#fff;
+  font:600 12px var(--body);
+  cursor:pointer
 }
 .links {
   position:relative;
@@ -923,11 +933,17 @@ footer .wrap {
     min-height:0
   }
   .burger {
-    display:block
+    display:block;
+    width:34px;
+    height:34px;
+    padding:0;
+    border-radius:10px
   }
+  .burger svg { width:17px; height:17px }
   .nav-cta {
     display:none
   }
+  .language-switch { margin-left:auto }
   .ind {
     display:none
   }
@@ -998,6 +1014,7 @@ footer .wrap {
 <nav>
  <div class="wrap">
   <a href="#top" class="logo">NEXT<span> DEV</span></a>
+  <select class="language-switch" id="language" aria-label="Choose language"><option value="en">EN</option><option value="uk">УКР</option><option value="ru">РУС</option></select>
   <div class="links" id="links">
    <a href="#top" class="on">Home</a><a href="#services">Services</a><a href="#work">Work</a><a href="#contact">Contact</a><i class="ind" id="ind"></i>
   </div>
@@ -1123,6 +1140,34 @@ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelect
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const small=matchMedia('(max-width:720px)').matches;
 
+/* Language selector */
+const translations={
+ uk:{"Home":"Головна","Services":"Послуги","Work":"Роботи","Contact":"Контакти","Start a Project":"Обговорити проєкт","Open menu":"Відкрити меню","We Build Digital Experiences.":"Створюємо цифрові рішення.","Websites":"Вебсайти","Telegram Bots":"Telegram-боти","E-commerce Stores":"Інтернет-магазини","Web Applications":"Вебзастосунки","Custom Digital Solutions":"Цифрові рішення на замовлення","Websites, Telegram bots, online stores and custom web apps, designed and built for businesses that want to look as serious as they are.":"Вебсайти, Telegram-боти, інтернет-магазини та вебзастосунки для бізнесу, який прагне виглядати так само професійно, як працює.","Explore Services":"Переглянути послуги","Everything you need to launch and sell online.":"Усе необхідне для запуску й онлайн-продажів.","One developer handles design, code and launch, so nothing gets lost between handoffs.":"Одна людина відповідає за дизайн, розробку й запуск — без втрат під час передавання роботи.","Website Development":"Розробка вебсайтів","Business websites, landing pages, portfolios, and responsive web design.":"Сайти для бізнесу, лендінги, портфоліо та адаптивний дизайн.","Discuss a website":"Обговорити сайт","Discuss a bot":"Обговорити бота","Telegram Mini Apps":"Мінізастосунки Telegram","Interactive Telegram shopping experiences, product catalogs, and web interfaces inside Telegram.":"Інтерактивні покупки, каталоги товарів і вебінтерфейси всередині Telegram.","Discuss a mini app":"Обговорити мініапку","E-commerce":"Електронна комерція","Online stores, product catalogs, shopping carts, and checkout interfaces.":"Інтернет-магазини, каталоги товарів, кошики та оформлення замовлень.","Discuss a store":"Обговорити магазин","Payment Integration":"Інтеграція платежів","Payment-provider integration and secure payment workflows, subject to suitable backend infrastructure.":"Підключення платіжних сервісів і безпечної оплати за наявності відповідної серверної частини.","Discuss payments":"Обговорити платежі","Custom Web Applications":"Вебзастосунки на замовлення","Admin dashboards, booking systems, management tools, and custom business software.":"Адмінпанелі, системи бронювання, інструменти керування та бізнес-програми.","Discuss a custom app":"Обговорити застосунок","Selected demos.":"Приклади робіт.","Three demonstration projects that show how I approach layout, hierarchy and detail. They are demos, not client work.":"Три демонстраційні проєкти, що показують мій підхід до структури, ієрархії та деталей. Це демо, а не роботи для клієнтів.","Demo":"Демо","Barbershop":"Барбершоп","Restaurant website with a menu and table reservation flow.":"Сайт ресторану з меню та бронюванням столиків.","Premium barbershop website featuring services, pricing, a photo gallery, opening hours, and contact information.":"Сайт барбершопу з послугами, цінами, фотогалереєю, графіком роботи та контактами.","Store management dashboard for orders and sales.":"Панель керування замовленнями та продажами магазину.","Let’s Build Something Great.":"Створімо щось особливе.","Message me on Telegram for the fastest reply, or send the project form below.":"Напишіть мені в Telegram для швидкої відповіді або заповніть форму нижче.","Message on Telegram":"Написати в Telegram","Send an email":"Надіслати email","Setup needed: the Telegram username is not configured yet, so the Telegram buttons have nowhere to go. Set ":"Потрібне налаштування: ім’я користувача Telegram ще не вказане. Додайте "," in the CONFIG block at the top of the script.":" у блоці CONFIG на початку скрипту.","Tell me about your project":"Розкажіть про свій проєкт","This site has no server, so the form does not store anything. It prepares your message and opens Telegram (or email) with the text filled in. You still press send there.":"На сайті немає сервера, тому форма нічого не зберігає. Вона підготує повідомлення та відкриє Telegram (або пошту), де ви зможете його надіслати.","Your name (optional)":"Ваше ім’я (необов’язково)","Your name":"Ваше ім’я","Project type":"Тип проєкту","Describe your idea":"Опишіть свою ідею","What do you want to build, and when do you need it?":"Що потрібно створити та коли?","Prepare my message":"Підготувати повідомлення","Copy message":"Копіювати повідомлення","Websites, bots and web apps, built with care.":"Вебсайти, боти й застосунки, створені з увагою до деталей.","Live Demo":"Дивитися демо","View live demo":"Переглянути демо","Demo link not set":"Посилання на демо відсутнє","Demo link not configured yet":"Посилання на демо ще не налаштовано","Website":"Вебсайт","Telegram Bot":"Telegram-бот","Mini App":"Мініапка","Online Store":"Інтернет-магазин","Other":"Інше"},
+ ru:{"Home":"Главная","Services":"Услуги","Work":"Работы","Contact":"Контакты","Start a Project":"Обсудить проект","Open menu":"Открыть меню","We Build Digital Experiences.":"Создаём цифровые решения.","Websites":"Веб-сайты","Telegram Bots":"Боты Telegram","E-commerce Stores":"Интернет-магазины","Web Applications":"Веб-приложения","Custom Digital Solutions":"Цифровые решения на заказ","Websites, Telegram bots, online stores and custom web apps, designed and built for businesses that want to look as serious as they are.":"Веб-сайты, боты Telegram, интернет-магазины и приложения для бизнеса, который хочет выглядеть так же профессионально, как работает.","Explore Services":"Наши услуги","Everything you need to launch and sell online.":"Всё необходимое для запуска и онлайн-продаж.","One developer handles design, code and launch, so nothing gets lost between handoffs.":"Один специалист отвечает за дизайн, разработку и запуск — без потери деталей.","Website Development":"Разработка веб-сайтов","Business websites, landing pages, portfolios, and responsive web design.":"Сайты для бизнеса, лендинги, портфолио и адаптивный дизайн.","Discuss a website":"Обсудить сайт","Discuss a bot":"Обсудить бота","Telegram Mini Apps":"Мини-приложения Telegram","Interactive Telegram shopping experiences, product catalogs, and web interfaces inside Telegram.":"Интерактивные покупки, каталоги товаров и веб-интерфейсы внутри Telegram.","Discuss a mini app":"Обсудить мини-приложение","E-commerce":"Электронная коммерция","Online stores, product catalogs, shopping carts, and checkout interfaces.":"Интернет-магазины, каталоги товаров, корзины и оформление заказа.","Discuss a store":"Обсудить магазин","Payment Integration":"Интеграция платежей","Payment-provider integration and secure payment workflows, subject to suitable backend infrastructure.":"Подключение платёжных сервисов и безопасной оплаты при наличии подходящей серверной части.","Discuss payments":"Обсудить платежи","Custom Web Applications":"Веб-приложения на заказ","Admin dashboards, booking systems, management tools, and custom business software.":"Админ-панели, системы бронирования, инструменты управления и бизнес-программы.","Discuss a custom app":"Обсудить приложение","Selected demos.":"Примеры работ.","Three demonstration projects that show how I approach layout, hierarchy and detail. They are demos, not client work.":"Три демонстрационных проекта, показывающих мой подход к структуре, иерархии и деталям. Это демо, а не клиентские работы.","Demo":"Демо","Barbershop":"Барбершоп","Restaurant website with a menu and table reservation flow.":"Сайт ресторана с меню и бронированием столиков.","Premium barbershop website featuring services, pricing, a photo gallery, opening hours, and contact information.":"Сайт барбершопа с услугами, ценами, фотогалереей, графиком работы и контактами.","Store management dashboard for orders and sales.":"Панель управления заказами и продажами магазина.","Let’s Build Something Great.":"Создадим что-то особенное.","Message me on Telegram for the fastest reply, or send the project form below.":"Напишите мне в Telegram для быстрого ответа или заполните форму ниже.","Message on Telegram":"Написать в Telegram","Send an email":"Отправить email","Setup needed: the Telegram username is not configured yet, so the Telegram buttons have nowhere to go. Set ":"Требуется настройка: имя пользователя Telegram ещё не указано. Добавьте "," in the CONFIG block at the top of the script.":" в блок CONFIG в начале скрипта.","Tell me about your project":"Расскажите о проекте","This site has no server, so the form does not store anything. It prepares your message and opens Telegram (or email) with the text filled in. You still press send there.":"На сайте нет сервера, поэтому форма ничего не сохраняет. Она подготовит сообщение и откроет Telegram (или почту), где вы сможете его отправить.","Your name (optional)":"Ваше имя (необязательно)","Your name":"Ваше имя","Project type":"Тип проекта","Describe your idea":"Опишите вашу идею","What do you want to build, and when do you need it?":"Что нужно создать и к какому сроку?","Prepare my message":"Подготовить сообщение","Copy message":"Копировать сообщение","Websites, bots and web apps, built with care.":"Веб-сайты, боты и приложения, созданные с вниманием к деталям.","Live Demo":"Открыть демо","View live demo":"Посмотреть демо","Demo link not set":"Ссылка на демо не задана","Demo link not configured yet":"Ссылка на демо ещё не настроена","Website":"Веб-сайт","Telegram Bot":"Бот Telegram","Mini App":"Мини-приложение","Online Store":"Интернет-магазин","Other":"Другое"}
+};
+const languageSelect=$('#language');
+const originalText=new WeakMap();
+function setLanguage(lang){
+ const dict=translations[lang]||{};
+ document.documentElement.lang=lang;
+ $$('body *').forEach(el=>{
+   if(el.children.length===0 && el.textContent.trim()){
+     if(!originalText.has(el))originalText.set(el,el.textContent);
+     const raw=originalText.get(el),key=raw.trim();
+     if(dict[key])el.textContent=raw.replace(key,dict[key]);
+     else if(lang==='en')el.textContent=raw;
+   }
+ });
+ $$('input[placeholder],textarea[placeholder]').forEach(el=>{
+   const key=el.dataset.originalPlaceholder||el.placeholder;el.dataset.originalPlaceholder=key;
+   el.placeholder=dict[key]||key;
+ });
+ languageSelect.value=lang;
+ try{localStorage.setItem('site-language',lang)}catch(e){}
+}
+languageSelect.addEventListener('change',()=>setLanguage(languageSelect.value));
+try{setLanguage(localStorage.getItem('site-language')||'en')}catch(e){setLanguage('en')}
+
 /* Contact config */
 const u=String(CONFIG.telegramUsername||'').replace(/^@/,'');
 const user=/^[A-Za-z0-9_]{5,32}$/.test(u)&&u!=='YOUR_USERNAME'?u:'';
@@ -1197,6 +1242,8 @@ $('#form').addEventListener('submit',e=>{e.preventDefault();const t=build();
   else st.textContent='No contact method is configured yet, so nothing was sent. Use “Copy message” and send it to the site owner directly.'});
 $('#copy').onclick=async()=>{if(!$('#pmsg').value.trim()){st.textContent='Write your idea first, then copy.';return}
   try{await navigator.clipboard.writeText(build());st.textContent='Message copied.'}catch(e){st.textContent='Copy failed. Select the text and copy it manually.'}};
+/* Translate text added by the scripts above as well. */
+setLanguage(languageSelect.value);
 })();
 </script>
 </body>
